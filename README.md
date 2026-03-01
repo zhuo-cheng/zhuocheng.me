@@ -8,8 +8,11 @@ Built with [React.js](https://reactjs.org/) and CSS3.
 
 ```
 $PROJECT_ROOT
-│   # Page files
+│   # Vite entry HTML
+├── index.html
+│   # Static files copied as-is on build
 ├── public
+│   # React source files
 ├── src
 │   │   # Icon and image files
 │   ├── assets
@@ -27,13 +30,13 @@ In the project directory, you can run:
 ### npm install
 Installs the project dependencies.
 
-### npm start
+### npm run dev
 Runs the app in the development mode locally. The page will reload automatically if you make any edits.
 
-### npm run build / npm run predeploy
-Builds the app for production to the `build` folder.
+### npm run build
+Builds the app for production to the `dist` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 The build is minified and the filenames include the hashes.
 
 ### npm run deploy
-Manages and deploys the files under the `build` folder to the `gh-pages` branch of the repository. This branch is used by GitHub Pages to serve the website.
+Builds and deploys the files under the `dist` folder to the `gh-pages` branch of the repository. This branch is used by GitHub Pages to serve the website.

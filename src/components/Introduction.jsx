@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import homepageImage from "../assets/homepage.jpg";
+import homepageImage from "../assets/homepage.webp";
 import "../styles/introduction.css";
 
 const Introduction = () => {
@@ -71,7 +71,7 @@ const Introduction = () => {
       </p>
       <p>
         {JOBS.map((job, index) => (
-          <React.Fragment>
+          <React.Fragment key={job.type}>
             {index === 0 && "Currently, "}
             {`${job.ratio} `}
             <span className="highlight text-highlight">{job.type}</span>
