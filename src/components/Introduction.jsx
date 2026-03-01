@@ -1,89 +1,108 @@
-import React, { useState } from "react";
-import homepageImage from "../assets/homepage.webp";
+import { Fragment, useEffect, useRef, useState } from "react";
+import "@google/model-viewer";
+import homepageModel from "../assets/hippo.vox.glb";
 import "../styles/introduction.css";
 
+const ACTIVITIES = [
+  {
+    emoji: "☕️",
+    text: "brew pour-over coffee",
+    animationAttr: "coffee",
+  },
+  {
+    emoji: "🐈",
+    text: "play with my cat",
+    animationAttr: "cat",
+  },
+  {
+    emoji: "🎧",
+    text: "listen to rap",
+    animationAttr: "headphone",
+  },
+  {
+    emoji: "✈️",
+    text: "enjoy traveling",
+    animationAttr: "plane",
+  },
+];
+
+const HIGH_FIVE_RESET_MS = 0;
+
 const Introduction = () => {
-  const ACTIVITIES = [
-    {
-      emoji: "🕹",
-      text: "play video games",
-      animationAttr: "game",
-    },
-    {
-      emoji: "🌀",
-      text: "watch anime",
-      animationAttr: "swirl",
-    },
-    {
-      emoji: "🎧",
-      text: "listen to rap",
-      animationAttr: "headphone",
-    },
-    {
-      emoji: "✈️",
-      text: "enjoy traveling",
-      animationAttr: "plane",
-    },
-  ];
-  const JOBS = [
-    {
-      type: "Backend",
-      ratio: "70%",
-    },
-    {
-      type: "Frontend",
-      ratio: "15%",
-    },
-    {
-      type: "Infrastructure",
-      ratio: "15%",
-    },
-  ];
   const [noHighFive, setNoHighFive] = useState(false);
+  const highFiveTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (highFiveTimerRef.current) {
+        clearTimeout(highFiveTimerRef.current);
+      }
+    };
+  }, []);
+
   const refreshHighFive = () => {
     setNoHighFive(true);
-    setTimeout(() => {
+    if (highFiveTimerRef.current) {
+      clearTimeout(highFiveTimerRef.current);
+    }
+    highFiveTimerRef.current = setTimeout(() => {
       setNoHighFive(false);
-    });
+    }, HIGH_FIVE_RESET_MS);
   };
 
   return (
     <div>
-      <img className="homepage-img" src={homepageImage} alt="homepageImage" />
-      <p className="img-description">Jan 7, 2024 @ The Aomori Museum of Art</p>
+      <div className="homepage-model-wrap">
+        <model-viewer
+          src={homepageModel}
+          alt="3D model"
+          tone-mapping="neutral"
+          camera-controls
+          camera-orbit="0deg 75deg 90%"
+          min-camera-orbit="auto auto 75%"
+          max-camera-orbit="auto auto 150%"
+          auto-rotate
+          auto-rotate-delay="0"
+          rotation-per-second="15deg"
+          interaction-prompt="none"
+          exposure="0.6"
+          ambient-occlusion-intensity="2"
+          shadow-intensity="1.5"
+          shadow-softness="1"
+        ></model-viewer>
+      </div>
       <h1>
         <span
           className={`waving-hand ${noHighFive ? "-no-high-five" : ""}`}
           onClick={refreshHighFive}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              refreshHighFive();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="High five"
         />
         Hey there! I'm Zhuo Cheng
       </h1>
       <p>
         Software Engineer @{" "}
         <a
-          href="https://www.lycorp.co.jp/ja/"
+          href="https://www.lycorp.co.jp/en/"
           target="_blank"
           rel="noreferrer noopener"
           className="highlight company-highlight"
         >
-          LINEヤフー
+          LY Corporation
         </a>
-      </p>
-      <p>
-        {JOBS.map((job, index) => (
-          <React.Fragment key={job.type}>
-            {index === 0 && "Currently, "}
-            {`${job.ratio} `}
-            <span className="highlight text-highlight">{job.type}</span>
-            {index !== JOBS.length - 1 && " , "}
-          </React.Fragment>
-        ))}
       </p>
       <p className="activity">
         When I'm not coding, I ...
         <br />
         {ACTIVITIES.map((activity, index) => (
-          <React.Fragment key={activity.text}>
+          <Fragment key={activity.text}>
             {index !== 0 && ", "}
             {index === ACTIVITIES.length - 1 && "and "}
             <span
@@ -93,7 +112,7 @@ const Introduction = () => {
             >
               {activity.text}
             </span>
-          </React.Fragment>
+          </Fragment>
         ))}
       </p>
     </div>

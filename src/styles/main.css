@@ -1,16 +1,14 @@
 :root {
   --bg-color: #202020;
   --text-color: #eaeaea;
-  --text-highlight-color: #eaeaea;
   --company-highlight-color-l: #06c755;
   --company-highlight-color-y: #ff0033;
   --transition: 0.5s ease;
-  --z-above-content: 1;
 }
 
 *,
-*:after,
-*:before {
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -36,9 +34,13 @@ body {
 
 main {
   text-align: center;
-  padding: 3em;
+  padding: 1.5em 1.5em;
   max-width: 1000px;
   margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 a,
@@ -49,8 +51,9 @@ a:visited {
 }
 
 h1 {
+  font-family: "Space Grotesk", sans-serif;
   font-size: 2.2em;
-  margin: 1em 0;
+  margin: 1em 0 0.2em;
 }
 
 p {

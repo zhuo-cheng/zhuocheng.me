@@ -2,22 +2,34 @@
   white-space: nowrap;
 }
 
-.preserve-spaces {
-  white-space: pre;
+.homepage-model-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
-.homepage-img {
-  width: 22em;
+.homepage-model-wrap model-viewer {
+  display: block;
+  width: min(40vw, 22rem);
+  height: min(40vw, 22rem);
+  max-width: 40vw;
+  max-height: 40vw;
+  cursor: grab;
 }
 
-.img-description {
-  font-size: 0.7em;
-  color: var(--text-color);
+.homepage-model-wrap model-viewer:hover,
+.homepage-model-wrap model-viewer:active {
+  cursor: grabbing;
 }
 
 @media screen and (max-width: 1000px) {
-  .homepage-img {
-    max-width: 85%;
+  .homepage-model-wrap model-viewer {
+    width: 96vw;
+    height: 96vw;
+    max-width: 96vw;
+    max-height: 96vw;
   }
 }
 
@@ -73,13 +85,8 @@
   transition: top 200ms cubic-bezier(0, 0.85, 0.8, 1);
 }
 
-.text-highlight::after {
-  top: 93%;
-  background-color: var(--text-highlight-color);
-}
-
 .company-highlight::after {
-  top: 88%;
+  top: 92%;
   background: linear-gradient(
     to right,
     var(--company-highlight-color-l) 25%,
@@ -96,11 +103,11 @@
 }
 
 .activity {
-  margin: 2em 0 3em;
+  margin: 1.5em 0 2.2em;
 }
 
 .activity-hover-able {
-  background: linear-gradient(90deg, #fff6 50%, transparent 50%);
+  background: linear-gradient(90deg, #fff5 50%, transparent 50%);
   background-repeat: repeat-x;
   background-size: 6px 1px;
   background-position: 0 100%;
@@ -121,14 +128,14 @@
   animation-timing-function: linear;
 }
 
-.activity-hover-able:hover[data-animation="game"]::after {
-  animation-name: game-animation;
+.activity-hover-able:hover[data-animation="cat"]::after {
+  animation-name: cat-animation;
   animation-duration: 1s;
 }
 
-.activity-hover-able:hover[data-animation="swirl"]::after {
-  animation-name: swirl-animation;
-  animation-duration: 1.8s;
+.activity-hover-able:hover[data-animation="coffee"]::after {
+  animation-name: coffee-animation;
+  animation-duration: 3s;
 }
 
 .activity-hover-able:hover[data-animation="headphone"]::after {
@@ -202,13 +209,13 @@
   }
 }
 
-@keyframes game-animation {
+@keyframes cat-animation {
   0% {
     transform: rotate(0deg);
   }
 
   25% {
-    transform: rotate(20deg);
+    transform: rotate(10deg);
   }
 
   50% {
@@ -216,7 +223,7 @@
   }
 
   75% {
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
   }
 
   100% {
@@ -224,17 +231,25 @@
   }
 }
 
-@keyframes swirl-animation {
+@keyframes coffee-animation {
   0% {
-    transform: rotate(0deg);
+    transform: translateY(0);
   }
 
-  50% {
-    transform: rotate(180deg);
+  20% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-10%);
+  }
+
+  70% {
+    transform: translateY(-10%);
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: translateY(0);
   }
 }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import githubIcon from "../assets/github.svg";
 import linkedinIcon from "../assets/linkedin.svg";
 import facebookIcon from "../assets/facebook.svg";
@@ -8,41 +7,41 @@ import zennIcon from "../assets/zenn.svg";
 import emailIcon from "../assets/email.svg";
 import "../styles/contact_links.css";
 
-const ContactLinks = () => {
-  const CONTACT_ITEMS = [
-    { name: "GitHub", url: "https://github.com/zhuo-cheng/", icon: githubIcon },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/zhuo-cheng/",
-      icon: linkedinIcon,
-    },
-    {
-      name: "Facebook",
-      url: "https://www.facebook.com/joel.zhuo.cheng/",
-      icon: facebookIcon,
-    },
-    {
-      name: "X",
-      url: "https://twitter.com/zhuoch/",
-      icon: xIcon,
-    },
-    {
-      name: "Instagram",
-      url: "https://www.instagram.com/zhuo.ch/",
-      icon: instagramIcon,
-    },
-    {
-      name: "Zenn",
-      url: "https://zenn.dev/zhuo_cheng",
-      icon: zennIcon,
-    },
-    {
-      name: "Email",
-      url: "mailto:joel.zhuo.cheng@gmail.com",
-      icon: emailIcon,
-    },
-  ];
+const CONTACT_ITEMS = [
+  { name: "GitHub", url: "https://github.com/zhuo-cheng/", icon: githubIcon },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/zhuo-cheng/",
+    icon: linkedinIcon,
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/joel.zhuo.cheng/",
+    icon: facebookIcon,
+  },
+  {
+    name: "X",
+    url: "https://twitter.com/zhuoch/",
+    icon: xIcon,
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/zhuo.ch/",
+    icon: instagramIcon,
+  },
+  {
+    name: "Zenn",
+    url: "https://zenn.dev/zhuo_cheng",
+    icon: zennIcon,
+  },
+  {
+    name: "Email",
+    url: "mailto:joel.zhuo.cheng@gmail.com",
+    icon: emailIcon,
+  },
+];
 
+const ContactLinks = () => {
   return (
     <ul className="links">
       {CONTACT_ITEMS.map((item) => (
