@@ -27,16 +27,57 @@ const ACTIVITIES = [
 ];
 
 const HIGH_FIVE_RESET_MS = 0;
+const MIN_MODEL_LOADING_MS = 300;
 
 const Introduction = () => {
   const [noHighFive, setNoHighFive] = useState(false);
+  const [isModelLoading, setIsModelLoading] = useState(true);
   const highFiveTimerRef = useRef(null);
+  const modelViewerRef = useRef(null);
+  const modelLoadingStartRef = useRef(0);
+  const revealTimerRef = useRef(null);
 
   useEffect(() => {
     return () => {
       if (highFiveTimerRef.current) {
         clearTimeout(highFiveTimerRef.current);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    modelLoadingStartRef.current = Date.now();
+
+    const modelViewer = modelViewerRef.current;
+    if (!modelViewer) {
+      return;
+    }
+
+    const stopLoading = () => {
+      const elapsed = Date.now() - modelLoadingStartRef.current;
+      const remaining = Math.max(0, MIN_MODEL_LOADING_MS - elapsed);
+
+      if (revealTimerRef.current) {
+        window.clearTimeout(revealTimerRef.current);
+      }
+
+      revealTimerRef.current = window.setTimeout(() => {
+        setIsModelLoading(false);
+      }, remaining);
+    };
+
+    const fallbackTimer = window.setTimeout(stopLoading, 3000);
+
+    modelViewer.addEventListener("load", stopLoading);
+    modelViewer.addEventListener("error", stopLoading);
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      if (revealTimerRef.current) {
+        window.clearTimeout(revealTimerRef.current);
+      }
+      modelViewer.removeEventListener("load", stopLoading);
+      modelViewer.removeEventListener("error", stopLoading);
     };
   }, []);
 
@@ -53,12 +94,22 @@ const Introduction = () => {
   return (
     <div>
       <div className="homepage-model-wrap">
+        <div
+          className={`model-loading ${
+            isModelLoading ? "model-loading-visible" : "model-loading-hidden"
+          }`}
+          aria-hidden="true"
+        >
+          <span className="model-loading-spinner"></span>
+        </div>
         <model-viewer
+          ref={modelViewerRef}
+          className={isModelLoading ? "model-hidden" : "model-ready"}
           src={homepageModel}
           alt="3D model"
           tone-mapping="neutral"
           camera-controls
-          camera-orbit="0deg 75deg 90%"
+          camera-orbit="0deg 75deg 95%"
           min-camera-orbit="auto auto 75%"
           max-camera-orbit="auto auto 150%"
           auto-rotate
@@ -67,7 +118,7 @@ const Introduction = () => {
           interaction-prompt="none"
           exposure="0.6"
           ambient-occlusion-intensity="2"
-          shadow-intensity="1.5"
+          shadow-intensity="2"
           shadow-softness="1"
         ></model-viewer>
       </div>
