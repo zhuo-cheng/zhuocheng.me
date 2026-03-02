@@ -33,7 +33,7 @@ const VoxelHippo = () => {
     renderer.toneMapping = THREE.NoToneMapping;
     // Enable soft shadow maps for realistic angled shadows
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.VSMShadowMap;
     container.appendChild(renderer.domElement);
     refRenderer.current = renderer;
 
@@ -67,14 +67,14 @@ const VoxelHippo = () => {
     const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
     keyLight.position.set(-4, 18, 10);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(2048, 2048);
+    keyLight.shadow.mapSize.set(1024, 1024);
     keyLight.shadow.camera.near = 1;
     keyLight.shadow.camera.far = 180;
     keyLight.shadow.camera.left = -12;
     keyLight.shadow.camera.right = 12;
     keyLight.shadow.camera.top = 18;
     keyLight.shadow.camera.bottom = -8;
-    keyLight.shadow.radius = 10; // soft shadow edge blur
+    keyLight.shadow.radius = 20; // soft shadow edge blur
     keyLight.shadow.bias = -0.0005;
     scene.add(keyLight);
 
