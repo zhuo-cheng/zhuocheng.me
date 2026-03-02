@@ -5,6 +5,8 @@
 .homepage-model-wrap {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -47,43 +49,45 @@
   animation: model-loading-spin 0.8s linear infinite;
 }
 
-.homepage-model-wrap model-viewer {
+.model-credit {
+  font-size: 0.7rem;
+  font-style: italic;
+  opacity: 0.4;
+  margin-top: 0.2rem;
+  line-height: 1;
+}
+
+.homepage-model-wrap .voxel-model-canvas {
   display: block;
-  width: min(40vw, 22rem);
-  height: min(40vw, 22rem);
-  max-width: 40vw;
-  max-height: 40vw;
+  width: min(38vw, 22rem);
+  height: min(38vw, 22rem);
   position: relative;
   z-index: 1;
-  /* background-color: transparent; */
-  /* --poster-color: transparent; */
   cursor: grab;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 180ms ease;
 }
 
-.homepage-model-wrap model-viewer.model-hidden {
-  opacity: 0;
-  visibility: hidden;
+.homepage-model-wrap .voxel-model-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-.homepage-model-wrap model-viewer.model-ready {
-  opacity: 1;
-  visibility: visible;
-}
-
-.homepage-model-wrap model-viewer:hover,
-.homepage-model-wrap model-viewer:active {
+.homepage-model-wrap .voxel-model-canvas:hover,
+.homepage-model-wrap .voxel-model-canvas:active {
   cursor: grabbing;
 }
 
 @media screen and (max-width: 1000px) {
-  .homepage-model-wrap model-viewer {
-    width: 96vw;
-    height: 96vw;
-    max-width: 96vw;
-    max-height: 96vw;
+  .homepage-model-wrap .voxel-model-canvas {
+    width: min(60vw, 22rem);
+    height: min(60vw, 22rem);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homepage-model-wrap .voxel-model-canvas {
+    width: 80vw;
+    height: 80vw;
   }
 }
 

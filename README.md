@@ -2,7 +2,7 @@
 
 [https://www.zhuocheng.me](https://www.zhuocheng.me)
 
-Built with [React.js](https://reactjs.org/) and CSS3.
+Built with Three.js and CSS3.
 
 ## Project Structure
 
@@ -43,3 +43,7 @@ The build is minified and the filenames include the hashes.
 ### npm run deploy
 
 Builds and deploys the files under the `dist` folder to the `gh-pages` branch of the repository. This branch is used by GitHub Pages to serve the website.
+
+## Credits
+
+3D model showcase inspired by [craftz.dog](https://www.craftz.dog/).
