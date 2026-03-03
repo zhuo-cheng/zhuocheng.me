@@ -140,11 +140,12 @@
   left: -0.1em;
   right: -0.1em;
   bottom: 0;
-  transition: top var(--transition-timing);
+  transition: height var(--transition-timing);
 }
 
 .company-highlight::after {
-  top: 92%;
+  height: 3px;
+  bottom: -2px;
   background: linear-gradient(
     to right,
     var(--company-highlight-color-l) 25%,
@@ -157,7 +158,8 @@
 }
 
 .company-highlight:hover::after {
-  top: 0%;
+  height: calc(100% + 3px);
+  bottom: -2px;
 }
 
 .activity {
