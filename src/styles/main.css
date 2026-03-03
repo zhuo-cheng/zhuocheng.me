@@ -4,6 +4,7 @@
   --company-highlight-color-l: #06c755;
   --company-highlight-color-y: #ff0033;
   --transition: 0.5s ease;
+  --transition-timing: 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 *,

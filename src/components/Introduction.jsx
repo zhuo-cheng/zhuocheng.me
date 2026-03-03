@@ -25,7 +25,7 @@ const ACTIVITIES = [
   },
 ];
 
-const HIGH_FIVE_RESET_MS = 0;
+const HIGH_FIVE_RESET_MS = 50;
 
 const Introduction = () => {
   const [noHighFive, setNoHighFive] = useState(false);
